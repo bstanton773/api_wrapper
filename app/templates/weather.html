@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Weather</h1>
+
+<div class="form-group">
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ form.city_name.label }}
+            {{ form.city_name(class='form-control')}}
+        </fieldset>
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+</div>
+
+{% if city_data %}
+<div class="card" style="width: 18rem;">
+    <div class="card-header">{{ city_data.city }}</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Current Temp:</b> {{ city_data.current|round|int }}&#8457; </li>
+      <li class="list-group-item"><b>High: </b> {{ city_data.hi|round|int }}&#8457; </li>
+      <li class="list-group-item"><b>Low: </b> {{ city_data.lo|round|int }}&#8457; </li>
+      <li class="list-group-item"><b>Feels Like: </b> {{ city_data.feels_like|round|int }}&#8457; </li>
+      <li class="list-group-item"><b>Description: </b> {{ city_data.description }} </li>
+      <li class="list-group-item"><b>Sunrise: </b> {{ city_data.sunrise }} </li>
+      <li class="list-group-item"><b>Sunset: </b> {{ city_data.sunset }} </li>
+    </ul>
+  </div>
+{% endif %}
+{% endblock %}
